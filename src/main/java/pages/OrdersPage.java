@@ -67,6 +67,7 @@ public class OrdersPage extends AbstractComponents {
 	
 	public List<String> getOrderId() {
 		
+		
 		List<WebElement> products = getProducts();
 		
 		if(products==null) {

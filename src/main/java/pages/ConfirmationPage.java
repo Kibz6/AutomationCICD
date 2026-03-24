@@ -38,6 +38,7 @@ public class ConfirmationPage extends AbstractComponents {
 	WebElement orderHistoryPage;
 	
 	
+	
 	public String getConfirmation() {
 		String text = confirmation.getText();
 		return text;
@@ -70,7 +71,7 @@ public class ConfirmationPage extends AbstractComponents {
 	
 	public OrdersPage goToOrderHistoryPage() {
 		
-		clickWhenNotBlocked(confirmation);
+		clickWhenNotBlocked(orderHistoryPage);
         return new OrdersPage(driver);	
 		
 	}

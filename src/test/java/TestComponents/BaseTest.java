@@ -34,6 +34,8 @@ public class BaseTest {
 	
 	public WebDriver initializeDriver () throws IOException {
 		
+		System.setProperty("selenium.logger.level", "SEVERE");
+		
 		Properties prop = new Properties();		
 		FileInputStream fis = new FileInputStream("src\\main\\java\\resources\\GlobalData.properties");
 		prop.load(fis);

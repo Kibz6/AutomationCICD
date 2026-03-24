@@ -12,12 +12,13 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import TestComponents.BaseTest;
+import TestComponents.Retry;
 import pages.CartPage;
 import pages.ProductCatalogue;
 
 public class CartPageTests extends BaseTest{
 	
-	@Test(dataProvider="getData")
+	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void EmptyCartValidation(HashMap<String, String> input) {
 		
 		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
@@ -27,7 +28,7 @@ public class CartPageTests extends BaseTest{
 		
 	}
 	
-	@Test(dataProvider="getData")
+	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void ContinueShoppingButtonValidation(HashMap<String, String> input) {
 		
 		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
@@ -37,7 +38,7 @@ public class CartPageTests extends BaseTest{
 
 	}
 	
-	@Test(dataProvider="getData")
+	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void RemoveItemFromCartValidation(HashMap<String, String> input)  {
 		
 		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
@@ -50,7 +51,7 @@ public class CartPageTests extends BaseTest{
 	}
 	
 	
-	@Test(dataProvider="getData")
+	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void CartSubtotalValidation(HashMap<String, String> input) {
 		
 	ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
@@ -60,7 +61,7 @@ public class CartPageTests extends BaseTest{
 				
 	}
 	
-	@Test(dataProvider="getData")
+	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void CartSubtotalDeductionValidation(HashMap<String, String> input) {
 		
 		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
@@ -74,7 +75,7 @@ public class CartPageTests extends BaseTest{
 				
 	}
 	
-	@Test(dataProvider="getData")
+	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void CartSessionValidation(HashMap<String, String> input) {
 		
 		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
@@ -91,7 +92,7 @@ public class CartPageTests extends BaseTest{
 	}
 	
 	
-	@Test(dataProvider="getData")
+	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void CartPageRefreshValidation(HashMap<String, String> input) {
 		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
 		productCatalogue.addProductToCart(input.get("product"));
@@ -104,7 +105,7 @@ public class CartPageTests extends BaseTest{
 	}
 	
 	
-	@Test(dataProvider="getData")
+	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void CheckoutBtnValidation(HashMap<String, String> input){
 		
 		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
@@ -115,7 +116,7 @@ public class CartPageTests extends BaseTest{
 	
 	}
 	
-	@Test(dataProvider="getData")
+	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void ProductCodeValidation(HashMap<String, String> input) {
 		
 		    
@@ -131,7 +132,7 @@ public class CartPageTests extends BaseTest{
 
 	}
 	
-	@Test(dataProvider="getData")
+	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void ViewProductValidation(HashMap<String, String> input) {
 		
 	

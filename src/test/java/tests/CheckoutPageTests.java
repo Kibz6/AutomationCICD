@@ -10,7 +10,9 @@ import java.util.List;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+
 import TestComponents.BaseTest;
+import TestComponents.Retry;
 import pages.CartPage;
 import pages.CheckoutPage;
 import pages.ConfirmationPage;
@@ -20,7 +22,7 @@ public class CheckoutPageTests extends BaseTest{
 
 	
 	
-	@Test(dataProvider="getData")
+	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void CheckoutProductValidation(HashMap<String, String> input) {
 		
 		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
@@ -34,7 +36,7 @@ public class CheckoutPageTests extends BaseTest{
 		
 	}
 	
-	@Test(dataProvider="getData")
+	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void CouponValidation(HashMap<String, String> input) {
 		
 		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
@@ -47,7 +49,7 @@ public class CheckoutPageTests extends BaseTest{
 		
 	}
 	
-	@Test(dataProvider="getData")
+	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void ShippingInformationValidation(HashMap<String, String> input) {
 		
 		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
@@ -59,7 +61,7 @@ public class CheckoutPageTests extends BaseTest{
 		assertEquals(toast, "Please Enter Full Shipping Information");
 		
 	}
-	@Test(dataProvider="getData")
+	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void CreditCardValidation(HashMap<String, String> input) throws InterruptedException {
 		
 		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
@@ -74,7 +76,7 @@ public class CheckoutPageTests extends BaseTest{
 		//Test should fail cause you can order without putting in your credit card info
 	}
 	
-	@Test(dataProvider="getData")
+	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void PlaceOrderValidation(HashMap<String, String> input) throws InterruptedException  {
 		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
 		productCatalogue.addProductToCart(input.get("product"));

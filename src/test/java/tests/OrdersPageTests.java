@@ -15,7 +15,6 @@ import TestComponents.BaseTest;
 import pages.CartPage;
 import pages.CheckoutPage;
 import pages.ConfirmationPage;
-import pages.OrderDetailsPage;
 import pages.OrdersPage;
 import pages.ProductCatalogue;
 

@@ -33,7 +33,8 @@ public class CheckoutPageTests extends BaseTest{
 		List<String> after =checkoutPage.getProductNames();
 		assertTrue(after.stream().map(String::toLowerCase).toList()
 				.containsAll(before.stream().map(String::toLowerCase).toList()));
-		
+		System.out.println(before);
+		System.out.println(after);
 	}
 	
 	@Test(dataProvider="getData",retryAnalyzer=Retry.class)

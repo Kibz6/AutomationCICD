@@ -41,14 +41,14 @@ public class OrdersPage extends AbstractComponents {
 	
 	public ProductCatalogue goBackToShop() {
 		
-		backToShop.click();
+		clickWhenNotBlocked(backToShop);
 		return new ProductCatalogue(driver);
 		
 	}
 	
 	public CartPage goBackToCart() {
 		
-		backToCart.click();
+		clickWhenNotBlocked(backToCart);
 		return new CartPage(driver);
 		
 	}
@@ -90,7 +90,7 @@ public class OrdersPage extends AbstractComponents {
 	public void deleteOrder(String orderId) {
 		
 		WebElement product = getProducts().stream().filter(s->s.findElement(By.xpath(".//th")).getText().equals(orderId))
-        .findFirst().orElse(null); //ifPresent(s->s.findElement(By.xpath(".//button[@class='btn btn-danger']")).click());
+        .findFirst().orElse(null);
 		
 		if(product !=null)
 		{

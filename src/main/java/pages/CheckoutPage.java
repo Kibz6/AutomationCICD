@@ -63,7 +63,8 @@ public class CheckoutPage extends AbstractComponents {
 	
 	public void applyCoupon() {
 		
-		applyCoupon.click();
+		clickWhenNotBlocked(applyCoupon);
+		
 		
 		
 	}
@@ -77,7 +78,7 @@ public class CheckoutPage extends AbstractComponents {
 		}
 		creditCard.clear();
 		creditCard.sendKeys(creditCardInfo);
-		placeOrder.click();
+		clickWhenNotBlocked(placeOrder);
 		ConfirmationPage confirmationPage = new ConfirmationPage(driver);
 		return confirmationPage;
 			

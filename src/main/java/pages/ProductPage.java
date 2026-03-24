@@ -37,7 +37,7 @@ public class ProductPage extends AbstractComponents {
 	
 	public void continueShopping() {
 		
-		continueShopping.click();
+		clickWhenNotBlocked(continueShopping);;
 	
 	}
 	
@@ -51,7 +51,7 @@ public class ProductPage extends AbstractComponents {
 	public void  addToCart() {
 		
 		waitForElementToAppear(addToCartBy);
-		addToCart.click();
+		clickWhenNotBlocked(addToCart);
 	}
 	
 	

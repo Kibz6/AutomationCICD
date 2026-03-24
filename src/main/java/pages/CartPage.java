@@ -105,7 +105,7 @@ public class CartPage extends AbstractComponents {
 	
 	public ProductCatalogue continueShopping() {
 		
-		continueShoppingBtn.click();
+		clickWhenNotBlocked(continueShoppingBtn);
 		ProductCatalogue productCatalogue = new ProductCatalogue(driver);
 		return productCatalogue;
 		
@@ -143,7 +143,7 @@ public class CartPage extends AbstractComponents {
 
 	
 	public CheckoutPage goToCheckout() {
-		checkout.click();
+		clickWhenNotBlocked(checkout);
 		CheckoutPage checkoutPage = new CheckoutPage(driver);
 		return checkoutPage;
 		

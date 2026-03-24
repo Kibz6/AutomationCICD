@@ -93,7 +93,7 @@ public class OrderDetailsPage extends AbstractComponents{
 
     public OrdersPage goToViewOrders() {
     	
-    	viewOrders.click();
+    	clickWhenNotBlocked(viewOrders);
     	return new OrdersPage(driver);
     	
     	

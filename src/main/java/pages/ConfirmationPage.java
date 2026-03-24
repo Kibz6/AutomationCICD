@@ -70,7 +70,7 @@ public class ConfirmationPage extends AbstractComponents {
 	
 	public OrdersPage goToOrderHistoryPage() {
 		
-		orderHistoryPage.click();
+		clickWhenNotBlocked(confirmation);
         return new OrdersPage(driver);	
 		
 	}

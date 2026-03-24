@@ -5,8 +5,11 @@
     <classes>
       <class name="tests.CheckoutPageTests">
         <methods>
+          <include name="CouponValidation" invocation-numbers="0"/>
+          <include name="PlaceOrderValidation" invocation-numbers="0"/>
           <include name="launchApplication"/>
           <include name="tearDown"/>
+          <include name="ShippingInformationValidation" invocation-numbers="0"/>
           <include name="CreditCardValidation" invocation-numbers="0"/>
         </methods>
       </class> <!-- tests.CheckoutPageTests -->

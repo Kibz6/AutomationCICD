@@ -31,10 +31,10 @@ public class CheckoutPageTests extends BaseTest{
 		List<String> before = cartPage.getCartProductNames();
 		CheckoutPage checkoutPage = cartPage.goToCheckout();
 		List<String> after =checkoutPage.getProductNames();
-		assertTrue(after.stream().map(String::toLowerCase).toList()
-				.containsAll(before.stream().map(String::toLowerCase).toList()));
 		System.out.println(before);
 		System.out.println(after);
+		assertTrue(after.stream().map(String::toLowerCase).toList()
+				.containsAll(before.stream().map(String::toLowerCase).toList()));
 	}
 	
 	@Test(dataProvider="getData",retryAnalyzer=Retry.class)

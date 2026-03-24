@@ -6,16 +6,8 @@
 </listeners>
 
   <test name="Chrome Tests">
-<classes>
-<class name="tests.CartPageTests"/>
-<class name="tests.CheckoutPageTests"/>
-</classes>
-  </test> <!-- Test -->
-  
-  <test name="Edge Tests">
-<classes>
-<class name="tests.OrdersPageTests"/>
-<class name="tests.OrderDetailsTests"/>
-</classes>
+<packages>
+<package name="tests"/>
+</packages>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

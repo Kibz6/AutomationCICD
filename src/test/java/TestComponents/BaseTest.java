@@ -37,7 +37,7 @@ public class BaseTest {
 		System.setProperty("selenium.logger.level", "SEVERE");
 		
 		Properties prop = new Properties();		
-		FileInputStream fis = new FileInputStream("src\\main\\java\\resources\\GlobalData.properties");
+		FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java\\resources\\GlobalData.properties");
 		prop.load(fis);
 		
 		String browserName = prop.getProperty("browser");

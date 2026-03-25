@@ -48,7 +48,7 @@ public class CheckoutPage extends AbstractComponents {
 	
 	public List<WebElement> getProducts() {
 		
-	waitForElementToAppear(productsBy);
+	waitForAllElementsToAppear(productsBy);
 	return products;
 				
 	}
@@ -78,7 +78,7 @@ public class CheckoutPage extends AbstractComponents {
 		}
 		creditCard.clear();
 		creditCard.sendKeys(creditCardInfo);
-		clickWhenNotBlocked(placeOrder);
+		placeOrder.click();
 		ConfirmationPage confirmationPage = new ConfirmationPage(driver);
 		return confirmationPage;
 			

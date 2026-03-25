@@ -65,6 +65,16 @@ public class AbstractComponents {
 		wait.until(ExpectedConditions.stalenessOf(element));
 	}
 	
+	public void waitForAllElementsToAppear(By findBy) {
+		
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(findBy));
+		
+	}
+	
+	
+	
+	
+	
 	  public void clickWhenNotBlocked(WebElement element) {
 
   	    wait.until(driver -> {

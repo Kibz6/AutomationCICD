@@ -47,7 +47,7 @@ public class ConfirmationPage extends AbstractComponents {
 		
 	public List<WebElement> getProducts() {
 		
-		waitForElementToAppear(productsBy);
+		waitForAllElementsToAppear(productsBy);
 		return products;
 		
 	}

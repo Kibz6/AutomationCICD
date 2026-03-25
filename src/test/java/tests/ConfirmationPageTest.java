@@ -30,8 +30,6 @@ public class ConfirmationPageTest extends BaseTest{
 		CheckoutPage checkoutPage = cartPage.goToCheckout();
 		ConfirmationPage confirmationPage = checkoutPage.placeOrder(input.get("country"),"");
 		List<String> after = confirmationPage.getProductNames();
-		System.out.println(before);
-		System.out.println(after);
 		assertTrue(before.stream().map(String::toLowerCase).toList()
 		        .containsAll(after.stream().map(String::toLowerCase).toList()));
 		

@@ -57,7 +57,7 @@ public class OrdersPage extends AbstractComponents {
 	
 	public List<WebElement> getProducts() {
 		try {
-		waitForElementToAppear(productsBy);
+		waitForAllElementsToAppear(productsBy);
 		return products;
 		} catch(TimeoutException e) {
 			return null;

@@ -56,7 +56,7 @@ public class CartPage extends AbstractComponents {
 	
 	public List<WebElement> getCartProducts() {
 		try {
-	    waitForElementToAppear(cartProductsBy);
+	    waitForAllElementsToAppear(cartProductsBy);
 		return cartProducts;
 	} catch (TimeoutException e) {
 		return null;

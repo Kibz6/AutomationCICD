@@ -1,5 +1,6 @@
 package pages;
 
+import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -7,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import abstractComponents.AbstractComponents;
 
@@ -56,9 +58,10 @@ public class CheckoutPage extends AbstractComponents {
 				
 	}
 	
-	public List<String> getProductNames() {
+	public List<String> getProductNames(int expectedCount) {
 		
-		
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		wait.until(driver-> products.size() == expectedCount);
 	    
 		List<String> productList = getProducts().stream().map(s->s.findElement(By.xpath(".//div[@class='item__title']")).getText()).toList();
 		return productList;

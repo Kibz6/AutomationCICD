@@ -30,8 +30,7 @@ public class CheckoutPageTests extends BaseTest{
 		CartPage cartPage = productCatalogue.goToCart();
 		List<String> before = cartPage.getCartProductNames();
 		CheckoutPage checkoutPage = cartPage.goToCheckout();
-		Thread.sleep(500);
-		List<String> after =checkoutPage.getProductNames();
+		List<String> after =checkoutPage.getProductNames(before.size());
 		assertTrue(after.stream().map(String::toLowerCase).toList()
 				.containsAll(before.stream().map(String::toLowerCase).toList()));
 	}

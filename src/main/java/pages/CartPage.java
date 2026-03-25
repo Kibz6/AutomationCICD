@@ -143,6 +143,7 @@ public class CartPage extends AbstractComponents {
 
 	
 	public CheckoutPage goToCheckout() {
+		
 		clickWhenNotBlocked(checkout);
 		CheckoutPage checkoutPage = new CheckoutPage(driver);
 		return checkoutPage;

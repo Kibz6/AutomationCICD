@@ -23,7 +23,7 @@ public class CheckoutPageTests extends BaseTest{
 	
 	
 	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
-	public void CheckoutProductValidation(HashMap<String, String> input) {
+	public void CheckoutProductValidation(HashMap<String, String> input) throws InterruptedException {
 		
 		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
 		productCatalogue.addMultipleItemsToCart();
@@ -31,6 +31,7 @@ public class CheckoutPageTests extends BaseTest{
 		List<String> before = cartPage.getCartProductNames();
 		CheckoutPage checkoutPage = cartPage.goToCheckout();
 		List<String> after =checkoutPage.getProductNames();
+		Thread.sleep(500);
 		assertTrue(after.stream().map(String::toLowerCase).toList()
 				.containsAll(before.stream().map(String::toLowerCase).toList()));
 	}

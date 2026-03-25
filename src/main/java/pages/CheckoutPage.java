@@ -30,6 +30,8 @@ public class CheckoutPage extends AbstractComponents {
 	@FindBy(xpath="//a[@class='btnn action__submit ng-star-inserted']")
 	WebElement placeOrder;
 	
+	By placeOrderBy = By.xpath("//a[@class='btnn action__submit ng-star-inserted']");
+	
 	@FindBy(xpath="//button[@type='submit']")
 	WebElement applyCoupon;
 		
@@ -78,6 +80,7 @@ public class CheckoutPage extends AbstractComponents {
 		}
 		creditCard.clear();
 		creditCard.sendKeys(creditCardInfo);
+		waitForElementToAppear(placeOrderBy);
 		clickWhenNotBlocked(placeOrder);
 		ConfirmationPage confirmationPage = new ConfirmationPage(driver);
 		return confirmationPage;

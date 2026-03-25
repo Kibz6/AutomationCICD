@@ -12,6 +12,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import TestComponents.BaseTest;
+import TestComponents.Retry;
 import pages.CartPage;
 import pages.CheckoutPage;
 import pages.ConfirmationPage;
@@ -21,7 +22,7 @@ import pages.ProductCatalogue;
 public class OrdersPageTests extends BaseTest {
 	
 	
-	@Test(dataProvider="getData")
+	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void BackToShopBtnValidation(HashMap<String,String> input) {
 		
 		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
@@ -33,7 +34,7 @@ public class OrdersPageTests extends BaseTest {
 	}
 	
 	
-	@Test(dataProvider="getData")
+	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void BackToCartBtnValidation(HashMap<String,String> input) {
 		
 		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
@@ -43,7 +44,7 @@ public class OrdersPageTests extends BaseTest {
 	
 }
 	
-	@Test(dataProvider="getData")
+	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void ViewItemValidation(HashMap<String,String> input) {
 		
 		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
@@ -58,7 +59,7 @@ public class OrdersPageTests extends BaseTest {
 				
 	}
 	
-	@Test(dataProvider="getData")
+	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void DeleteOrderValidation(HashMap<String,String> input) {
 		
 		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));

@@ -55,7 +55,7 @@ public class CheckoutPage extends AbstractComponents {
 	
 	public List<String> getProductNames() {
 		
-		waitForElementToAppear(productsBy);
+		waitForAllElementsToAppear(productsBy);
 		List<String> productList = getProducts().stream().map(s->s.findElement(By.xpath(".//div[@class='item__title']")).getText()).toList();
 		return productList;
 		
@@ -78,7 +78,7 @@ public class CheckoutPage extends AbstractComponents {
 		}
 		creditCard.clear();
 		creditCard.sendKeys(creditCardInfo);
-		placeOrder.click();
+		clickWhenNotBlocked(placeOrder);
 		ConfirmationPage confirmationPage = new ConfirmationPage(driver);
 		return confirmationPage;
 			

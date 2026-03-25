@@ -31,8 +31,12 @@ public class OrdersPage extends AbstractComponents {
 	@FindBy(xpath="//button[@class='btn btn-primary col-md-2 offset-md-4']")
 	WebElement backToShop;
 	
+	By backToShopBy = By.xpath("//button[@class='btn btn-primary col-md-2 offset-md-4']");
+	
 	@FindBy(xpath="//button[@class='btn btn-primary col-md-2']")
 	WebElement backToCart;
+	
+	By backToCartBy = By.xpath("//button[@class='btn btn-primary col-md-2']");
 	
 	
 	
@@ -41,6 +45,7 @@ public class OrdersPage extends AbstractComponents {
 	
 	public ProductCatalogue goBackToShop() {
 		
+		waitForElementToAppear(backToShopBy);
 		clickWhenNotBlocked(backToShop);
 		return new ProductCatalogue(driver);
 		
@@ -48,6 +53,7 @@ public class OrdersPage extends AbstractComponents {
 	
 	public CartPage goBackToCart() {
 		
+		waitForElementToAppear(backToCartBy);
 		clickWhenNotBlocked(backToCart);
 		return new CartPage(driver);
 		

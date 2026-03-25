@@ -49,6 +49,7 @@ public class CheckoutPage extends AbstractComponents {
 	
 	
 	public List<WebElement> getProducts() {
+	
 		
 	waitForAllElementsToAppear(productsBy);
 	return products;
@@ -57,7 +58,8 @@ public class CheckoutPage extends AbstractComponents {
 	
 	public List<String> getProductNames() {
 		
-		waitForAllElementsToAppear(productsBy);
+		
+	    
 		List<String> productList = getProducts().stream().map(s->s.findElement(By.xpath(".//div[@class='item__title']")).getText()).toList();
 		return productList;
 		

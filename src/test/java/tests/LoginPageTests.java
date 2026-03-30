@@ -19,14 +19,14 @@ public class LoginPageTests extends BaseTest{
 	public void SuccessfulLoginValidation(HashMap<String, String> input)
 	{
 		
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"),input.get("password"));
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
 		assertEquals("Login Successfully", productCatalogue.getToastMsg());	
 	}
 	
 	@Test(dataProvider="getData")
 	public void WrongPasswordValidation(HashMap<String, String> input) {
 		
-		loginPage.loginApplication(input.get("email"), "wrongpassword1234");
+		loginPage.loginApplication(currentEmail,"Wrongpassword1234");
 		assertEquals("Incorrect email or password.", loginPage.getToastMsg());
 			}
 		
@@ -50,7 +50,7 @@ public class LoginPageTests extends BaseTest{
 	public void ForgotPasswordLinkValidation()
 	{
 		loginPage.goToNewPasswordPage();
-		assertEquals("https://rahulshettyacademy.com/client/#/auth/password-new", driver.getCurrentUrl());
+		assertEquals("https://rahulshettyacademy.com/client/#/auth/password-new", getDriver().getCurrentUrl());
 		
 	}
 	
@@ -58,13 +58,13 @@ public class LoginPageTests extends BaseTest{
 	public void RegisterLinkValidation() {
 		
 		loginPage.goToRegisterPage();
-		assertEquals("https://rahulshettyacademy.com/client/#/auth/register", driver.getCurrentUrl());
+		assertEquals("https://rahulshettyacademy.com/client/#/auth/register", getDriver().getCurrentUrl());
 		
 	}
 	
 	@Test(dataProvider="getData")
 	public void LogOutValidation(HashMap<String, String> input) {
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"),input.get("password"));
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
 		productCatalogue.signOut();
 		assertEquals("Logout Successfully", loginPage.getToastMsg());
 		

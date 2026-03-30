@@ -23,7 +23,7 @@ public class ConfirmationPageTest extends BaseTest{
 	@Test(dataProvider="getData")
 	public void ProductNamesConfirmation(HashMap<String,String> input) {
 		
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"),input.get("password"));
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
 		productCatalogue.addMultipleItemsToCart();
 		CartPage cartPage = productCatalogue.goToCart();
 		List<String> before = cartPage.getCartProductNames();
@@ -39,19 +39,19 @@ public class ConfirmationPageTest extends BaseTest{
 	@Test(dataProvider="getData")
 	public void OrdersHistoryBtnValidation(HashMap<String, String> input) {
 		
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"),input.get("password"));
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
 		productCatalogue.addProductToCart(input.get("product"));
 		CartPage cartPage = productCatalogue.goToCart();
 		CheckoutPage checkoutPage = cartPage.goToCheckout();
 		ConfirmationPage confirmationPage = checkoutPage.placeOrder(input.get("country"),"");		
 		confirmationPage.goToOrderHistoryPage();
-		assertEquals(driver.getCurrentUrl(), "https://rahulshettyacademy.com/client/#/dashboard/myorders");
+		assertEquals(getDriver().getCurrentUrl(), "https://rahulshettyacademy.com/client/#/dashboard/myorders");
 	}
 	
 	@Test(dataProvider="getData")
 	public void OrdersIdValidation(HashMap<String, String> input) throws InterruptedException {
 		
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"),input.get("password"));
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
 		productCatalogue.addMultipleItemsToCart();
 		CartPage cartPage = productCatalogue.goToCart();
 		CheckoutPage checkoutPage = cartPage.goToCheckout();

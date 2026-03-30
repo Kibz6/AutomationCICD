@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import TestComponents.BaseTest;
@@ -18,10 +19,11 @@ import pages.ProductCatalogue;
 
 public class CartPageTests extends BaseTest{
 	
+	
 	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void EmptyCartValidation(HashMap<String, String> input) {
 		
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
 		CartPage cartPage = productCatalogue.goToCart();
 		assertEquals(cartPage.getEmptyCartMsg(), "No Products in Your Cart !");
 		assertEquals(cartPage.getToastMsg(), "No Product in Your Cart");
@@ -31,17 +33,17 @@ public class CartPageTests extends BaseTest{
 	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void ContinueShoppingButtonValidation(HashMap<String, String> input) {
 		
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
 		CartPage cartPage = productCatalogue.goToCart();
 		cartPage.continueShopping();
-		assertEquals("https://rahulshettyacademy.com/client/#/dashboard/dash", driver.getCurrentUrl());
+		assertEquals("https://rahulshettyacademy.com/client/#/dashboard/dash", getDriver().getCurrentUrl());
 
 	}
 	
 	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void RemoveItemFromCartValidation(HashMap<String, String> input)  {
 		
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
 		productCatalogue.addMultipleItemsToCart();
 		CartPage cartPage = productCatalogue.goToCart();
 		cartPage.removeItem(input.get("product"));
@@ -54,7 +56,7 @@ public class CartPageTests extends BaseTest{
 	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void CartSubtotalValidation(HashMap<String, String> input) {
 		
-	ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
+	ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail, currentPassword);
 	productCatalogue.addMultipleItemsToCart();
 	CartPage cartPage = productCatalogue.goToCart();
 	assertEquals(cartPage.getCartItemsTotal(), cartPage.getSubTotalValue());
@@ -64,7 +66,7 @@ public class CartPageTests extends BaseTest{
 	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void CartSubtotalDeductionValidation(HashMap<String, String> input) {
 		
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
 		productCatalogue.addMultipleItemsToCart();
 		CartPage cartPage = productCatalogue.goToCart();
 		cartPage.removeItem(input.get("product"));
@@ -78,12 +80,12 @@ public class CartPageTests extends BaseTest{
 	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void CartSessionValidation(HashMap<String, String> input) {
 		
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
 		productCatalogue.addProductToCart(input.get("product"));
 		CartPage cartPage = productCatalogue.goToCart();
 		List<String> before = cartPage.getCartProductNames();
 		cartPage.signOut();
-		loginPage.loginApplication(input.get("email"), input.get("password"));
+		loginPage.loginApplication(currentEmail,currentPassword);
 		productCatalogue.goToCart();
 		List<String> after = cartPage.getCartProductNames();
 		assertTrue(after.containsAll(before));
@@ -94,7 +96,7 @@ public class CartPageTests extends BaseTest{
 	
 	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void CartPageRefreshValidation(HashMap<String, String> input) {
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
 		productCatalogue.addProductToCart(input.get("product"));
 		CartPage cartPage = productCatalogue.goToCart();
 		List<String> before = cartPage.getCartProductNames();
@@ -108,26 +110,25 @@ public class CartPageTests extends BaseTest{
 	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void CheckoutBtnValidation(HashMap<String, String> input){
 		
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
 		productCatalogue.addProductToCart(input.get("product"));
 		CartPage cartPage = productCatalogue.goToCart();
 		cartPage.goToCheckout();
-		assertTrue(driver.getCurrentUrl().contains("https://rahulshettyacademy.com/client/#/dashboard/order"));
-	
+	    assertTrue(getDriver().getCurrentUrl().contains("https://rahulshettyacademy.com/client/#/dashboard/order"));
 	}
 	
 	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void ProductCodeValidation(HashMap<String, String> input) {
 		
 		    
-			ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));		
+			ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);		
 			productCatalogue.getProductName(input.get("product"));
 			productCatalogue.addProductToCart(input.get("product"));
 			CartPage cartPage = productCatalogue.goToCart();
 			List<String> productCode = cartPage.getProductCode();		
 			cartPage.goToHome();
 			productCatalogue.ViewProduct(input.get("product"));
-			assertTrue(driver.getCurrentUrl().contains(productCode.get(0)));
+			assertTrue(getDriver().getCurrentUrl().contains(productCode.get(0)));
 			
 
 	}
@@ -136,7 +137,7 @@ public class CartPageTests extends BaseTest{
 	public void ViewProductValidation(HashMap<String, String> input) {
 		
 	
-			ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));		
+			ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);		
 			productCatalogue.getProductName(input.get("product"));
 	
 	}

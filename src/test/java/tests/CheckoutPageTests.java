@@ -25,7 +25,7 @@ public class CheckoutPageTests extends BaseTest{
 	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void CheckoutProductValidation(HashMap<String, String> input) throws InterruptedException {
 		
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
 		productCatalogue.addMultipleItemsToCart();
 		CartPage cartPage = productCatalogue.goToCart();
 		List<String> before = cartPage.getCartProductNames();
@@ -38,7 +38,7 @@ public class CheckoutPageTests extends BaseTest{
 	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void CouponValidation(HashMap<String, String> input) {
 		
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
 		productCatalogue.addProductToCart(input.get("product"));
 		CartPage cartPage = productCatalogue.goToCart();
 		CheckoutPage checkoutPage = cartPage.goToCheckout();
@@ -51,7 +51,7 @@ public class CheckoutPageTests extends BaseTest{
 	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void ShippingInformationValidation(HashMap<String, String> input) {
 		
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
 		productCatalogue.addProductToCart(input.get("product"));
 		CartPage cartPage = productCatalogue.goToCart();
 		CheckoutPage checkoutPage = cartPage.goToCheckout();
@@ -63,7 +63,7 @@ public class CheckoutPageTests extends BaseTest{
 	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void CreditCardValidation(HashMap<String, String> input) throws InterruptedException {
 		
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
 		productCatalogue.addProductToCart(input.get("product"));
 		CartPage cartPage = productCatalogue.goToCart();
 		CheckoutPage checkoutPage = cartPage.goToCheckout();
@@ -77,7 +77,7 @@ public class CheckoutPageTests extends BaseTest{
 	
 	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void PlaceOrderValidation(HashMap<String, String> input) throws InterruptedException  {
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
 		productCatalogue.addProductToCart(input.get("product"));
 		CartPage cartPage = productCatalogue.goToCart();
 		CheckoutPage checkoutPage = cartPage.goToCheckout();

@@ -28,7 +28,7 @@ public class ProductCataloguePageTests extends BaseTest {
 	@Test(dataProvider="getData")
 	public void SearchBarValidation(HashMap<String, String> input) throws InterruptedException {
         	
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"),input.get("password"));		
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);		
 		productCatalogue.searchProduct(input.get("product"));
 		Thread.sleep(500);
 		List<WebElement> productList = productCatalogue.getProducts();
@@ -39,24 +39,24 @@ public class ProductCataloguePageTests extends BaseTest {
 	
     @Test(dataProvider="getData")
     public void MyOrdersBtnValidation(HashMap<String, String> input) {
-    	ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"),input.get("password"));
+    	ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
     	productCatalogue.goToMyOrders();
-    	assertEquals("https://rahulshettyacademy.com/client/#/dashboard/myorders", driver.getCurrentUrl());
+    	assertEquals("https://rahulshettyacademy.com/client/#/dashboard/myorders", getDriver().getCurrentUrl());
     	
     }
     
     @Test(dataProvider="getData")
     public void CartBtnValidation(HashMap<String, String> input) {
-    	ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"),input.get("password"));
+    	ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
     	productCatalogue.goToCart();
-    	assertEquals("https://rahulshettyacademy.com/client/#/dashboard/cart", driver.getCurrentUrl());
+    	assertEquals("https://rahulshettyacademy.com/client/#/dashboard/cart", getDriver().getCurrentUrl());
 		
 	}
     
     @Test(dataProvider="getData")
     public void AddToCartValidation (HashMap<String, String> input) throws InterruptedException {
     		
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"),input.get("password"));
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
 		productCatalogue.addProductToCart(input.get("product"));
 		CartPage cartPage = productCatalogue.goToCart();
 		List<String> products = cartPage.getCartProductNames();
@@ -69,7 +69,7 @@ public class ProductCataloguePageTests extends BaseTest {
     @Test(dataProvider="getData")
     public void CartNumberValidation(HashMap<String, String> input) throws InterruptedException {
     	
-    	ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"),input.get("password"));
+    	ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
     	int count = productCatalogue.addMultipleItemsToCart();   	
     	int number = productCatalogue.cartNmbrCheck();
     	assertEquals(count, number);
@@ -79,7 +79,7 @@ public class ProductCataloguePageTests extends BaseTest {
     @Test(dataProvider="getData")
     public void BrandNameValidation(HashMap<String, String> input) throws InterruptedException {
     	
-    	ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"),input.get("password"));
+    	ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
     	String name = productCatalogue.getBrandName();
     	assertTrue(name.equalsIgnoreCase("Automation"));
 

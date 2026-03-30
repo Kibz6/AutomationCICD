@@ -25,7 +25,7 @@ public class OrderDetailsTests extends BaseTest {
 		
 		
 		
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"),input.get("password"));
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
 		productCatalogue.addProductToCart(input.get("product"));
 		CartPage cartPage = productCatalogue.goToCart();
 		int price = cartPage.getCartItemsTotal();
@@ -35,8 +35,8 @@ public class OrderDetailsTests extends BaseTest {
 		OrdersPage ordersPage = confirmationPage.goToMyOrders();
 		OrderDetailsPage orderDetails = ordersPage.viewItem(orderId);
 		assertEquals(orderDetails.getGreetMsg(), "Thank you for Shopping With Us");
-		assertEquals(orderDetails.getBillingAddress(), input.get("email"));
-		assertEquals(orderDetails.getDeliveryAddress(), input.get("email"));
+		assertEquals(orderDetails.getBillingAddress(), currentEmail);
+		assertEquals(orderDetails.getDeliveryAddress(), currentEmail);
 		assertEquals(orderDetails.getBillingCountry(), input.get("country"));
 		assertEquals(orderDetails.getDeliveryCountry(), input.get("country"));
 		assertEquals(orderDetails.getOrderId(), orderId);
@@ -47,7 +47,7 @@ public class OrderDetailsTests extends BaseTest {
 	
 	@Test(dataProvider="getData")
 	public void ViewOrdersBtnValidation(HashMap<String, String> input){
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"),input.get("password"));
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
 		productCatalogue.addProductToCart(input.get("product"));
 		CartPage cartPage = productCatalogue.goToCart();
 		CheckoutPage checkoutPage = cartPage.goToCheckout();
@@ -56,7 +56,7 @@ public class OrderDetailsTests extends BaseTest {
 		OrdersPage ordersPage = confirmationPage.goToMyOrders();
 		OrderDetailsPage orderDetails = ordersPage.viewItem(orderId);
 		orderDetails.goToViewOrders();
-		assertEquals(driver.getCurrentUrl(), "https://rahulshettyacademy.com/client/#/dashboard/myorders");
+		assertEquals(getDriver().getCurrentUrl(), "https://rahulshettyacademy.com/client/#/dashboard/myorders");
 		
 
 	}

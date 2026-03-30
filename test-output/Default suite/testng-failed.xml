@@ -3,16 +3,22 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.CheckoutPageTests">
+      <class name="tests.CartPageTests">
         <methods>
-          <include name="CouponValidation" invocation-numbers="0"/>
-          <include name="PlaceOrderValidation" invocation-numbers="0"/>
+          <include name="CartSubtotalValidation"/>
+          <include name="CheckoutBtnValidation"/>
+          <include name="EmptyCartValidation"/>
+          <include name="ContinueShoppingButtonValidation"/>
+          <include name="ViewProductValidation"/>
+          <include name="ProductCodeValidation"/>
           <include name="launchApplication"/>
           <include name="tearDown"/>
-          <include name="ShippingInformationValidation" invocation-numbers="0"/>
-          <include name="CreditCardValidation" invocation-numbers="0"/>
+          <include name="RemoveItemFromCartValidation"/>
+          <include name="CartPageRefreshValidation"/>
+          <include name="CartSubtotalDeductionValidation"/>
+          <include name="CartSessionValidation"/>
         </methods>
-      </class> <!-- tests.CheckoutPageTests -->
+      </class> <!-- tests.CartPageTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

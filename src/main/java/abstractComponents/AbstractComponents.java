@@ -76,7 +76,8 @@ public class AbstractComponents {
 	
 	
 	  public void clickWhenNotBlocked(WebElement element) {
-
+        
+		wait.pollingEvery(Duration.ofMillis(500));
   	    wait.until(driver -> {
   	        try {
   	            element.click();

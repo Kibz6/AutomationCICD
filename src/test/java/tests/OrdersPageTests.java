@@ -25,10 +25,10 @@ public class OrdersPageTests extends BaseTest {
 	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void BackToShopBtnValidation(HashMap<String,String> input) {
 		
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
         OrdersPage ordersPage = productCatalogue.goToMyOrders();
         ordersPage.goBackToShop();
-        assertEquals(driver.getCurrentUrl(), "https://rahulshettyacademy.com/client/#/dashboard/dash");
+        assertEquals(getDriver().getCurrentUrl(), "https://rahulshettyacademy.com/client/#/dashboard/dash");
 	
 		
 	}
@@ -37,17 +37,17 @@ public class OrdersPageTests extends BaseTest {
 	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void BackToCartBtnValidation(HashMap<String,String> input) {
 		
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
         OrdersPage ordersPage = productCatalogue.goToMyOrders();
         ordersPage.goBackToCart();
-        assertEquals(driver.getCurrentUrl(), "https://rahulshettyacademy.com/client/#/dashboard/cart");
+        assertEquals(getDriver().getCurrentUrl(), "https://rahulshettyacademy.com/client/#/dashboard/cart");
 	
 }
 	
 	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void ViewItemValidation(HashMap<String,String> input) {
 		
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
 		productCatalogue.addProductToCart(input.get("product"));
 		CartPage cartPage = productCatalogue.goToCart();
 		CheckoutPage checkoutPage = cartPage.goToCheckout();
@@ -55,14 +55,14 @@ public class OrdersPageTests extends BaseTest {
 		String orderId = confirmationPage.getOrderId().get(0);
 		OrdersPage ordersPage = confirmationPage.goToMyOrders();
 		ordersPage.viewItem(orderId);
-		assertTrue(driver.getCurrentUrl().contains(orderId));
+		assertTrue(getDriver().getCurrentUrl().contains(orderId));
 				
 	}
 	
 	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
 	public void DeleteOrderValidation(HashMap<String,String> input) {
 		
-		ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"), input.get("password"));
+		ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);
 		productCatalogue.addProductToCart(input.get("product"));
 		CartPage cartPage = productCatalogue.goToCart();
 		CheckoutPage checkoutPage = cartPage.goToCheckout();

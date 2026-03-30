@@ -6,14 +6,15 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import org.testng.annotations.TestInstance;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-
+import com.aventstack.extentreports.Status;
 
 import resources.ExtentReporterNG;
 
-public class Listeners extends BaseTest implements ITestListener {
+public class Listeners implements ITestListener {
 
 	
 	ExtentTest test;
@@ -24,8 +25,21 @@ public class Listeners extends BaseTest implements ITestListener {
 	@Override
 	public void onTestStart(ITestResult result) {
 		
+	
+		BaseTest testInstance = (BaseTest) result.getInstance();		
+		String browser = testInstance.getCurrentBrowser();
+		Retry retry = (Retry) result.getMethod().getRetryAnalyzer(result);
+		if(retry != null && retry.count < retry.maxCount) {
+			test = extent.createTest(result.getMethod().getMethodName()+"- Retry" + (retry.count+1));
+			extentTest.set(test);
+			test.log(Status.INFO, "Retrying test...");
+		}
+		else {
+			
 		test = extent.createTest(result.getMethod().getMethodName());
 		extentTest.set(test);
+		}
+		test.info("Running on browser: "+ browser);
 		
 		ITestListener.super.onTestStart(result);
 	}
@@ -33,6 +47,7 @@ public class Listeners extends BaseTest implements ITestListener {
 	@Override
 	public void onTestSuccess(ITestResult result) {
 		extentTest.get().pass("Test Passed");
+		extentTest.remove();
 		ITestListener.super.onTestSuccess(result);
 	}
 
@@ -41,28 +56,30 @@ public class Listeners extends BaseTest implements ITestListener {
 		
 		extentTest.get().fail(result.getThrowable());
 		
-		try {
-			driver = (WebDriver) result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		
 		String filePath = null;
 		try {
-			filePath = getScreenshot(result.getMethod().getMethodName());
+			BaseTest testInstance = (BaseTest) result.getInstance();
+			filePath = testInstance.getScreenshot(result.getMethod().getMethodName());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		extentTest.get().addScreenCaptureFromPath(filePath, result.getMethod().getMethodName());
 		
+		extentTest.remove();
 		ITestListener.super.onTestFailure(result);
 		
 	}
 
 	@Override
 	public void onTestSkipped(ITestResult result) {
-		// TODO Auto-generated method stub
+		
+		Retry retry = (Retry) result.getMethod().getRetryAnalyzer(result);
+		if (retry !=null && retry.count > 0) {
+			return;
+		}
+		
+		extentTest.get().skip("Test Skipped: " + result.getMethod().getMethodName());
+		extentTest.remove();
 		ITestListener.super.onTestSkipped(result);
 	}
 

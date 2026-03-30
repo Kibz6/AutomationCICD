@@ -20,7 +20,7 @@ public class ProductPageTests extends BaseTest{
 	@Test(dataProvider="getData")
 	public void ProductNameValidation(HashMap<String, String> input) throws InterruptedException {
 		
-			ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"),input.get("password"));		
+			ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);		
 			ProductPage productPage = productCatalogue.ViewProduct(input.get("product"));
 			Thread.sleep(500);
 			assertEquals(productPage.getProductName(), input.get("product"));
@@ -31,7 +31,7 @@ public class ProductPageTests extends BaseTest{
 	public void AddToCartValidation(HashMap<String, String> input) throws InterruptedException {
 			
 		    
-			ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"),input.get("password"));		
+			ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);		
 			ProductPage productPage = productCatalogue.ViewProduct(input.get("product"));
 			Thread.sleep(1000);
 			productPage.addToCart();
@@ -45,10 +45,10 @@ public class ProductPageTests extends BaseTest{
 	public void ContinueShoppingValidation(HashMap<String, String> input) {
 			
 		    
-			ProductCatalogue productCatalogue = loginPage.loginApplication(input.get("email"),input.get("password"));		
+			ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);		
 			ProductPage productPage = productCatalogue.ViewProduct(input.get("product"));
 			productPage.continueShopping();
-			assertEquals(driver.getCurrentUrl(), "https://rahulshettyacademy.com/client/#/dashboard/dash");
+			assertEquals(getDriver().getCurrentUrl(), "https://rahulshettyacademy.com/client/#/dashboard/dash");
 		
 			
 	}

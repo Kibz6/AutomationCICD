@@ -52,6 +52,7 @@ public class BaseTest {
 	public WebDriver initializeDriver (String browserName) throws IOException {
 		
 			
+		
 		String hubUrl = "http://localhost:4444/wd/hub";
 			
 		switch (browserName.toLowerCase()) {

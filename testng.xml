@@ -23,7 +23,7 @@
 </packages>
   </test> <!-- Test -->
   
-   <test name="Edgbe Tests">
+   <test name="Edge Tests">
   <parameter name="browser" value="edge"/>
   <parameter name="email" value="randomemail123456@gmail.com"/>
   <parameter name="password" value="Randompass88889"/>

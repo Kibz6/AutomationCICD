@@ -107,3 +107,27 @@ git clone https://github.com/Kibz6/AutomationCICD.git
     - http://<grid-url>:4444/wd/hub
 
     This allows tests to run remotely instead of locally.
+
+7. Run the Tests
+
+    You can now run tests in multiple ways:
+
+    Locally:
+   - mvn test
+   
+    Via Jenkins:
+   - Trigger build manually or via GitHub webhook
+  
+     
+9. View Test Reports
+
+    After execution:
+
+    - Open Extent Reports generated in the project
+    - Review logs and screenshots for failed tests
+
+    Notes:
+   
+ - Jenkins must be publicly accessible (via ngrok) for full CI/CD workflow
+ - Selenium Grid must be running before triggering tests
+ - Ensure correct configuration of WebDriver hub URL

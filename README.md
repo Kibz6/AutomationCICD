@@ -182,7 +182,7 @@ How to run publicly:
 
 7. Notes
 
-    - Ngrok URLs are temporary. If you restart it, the URL changes.   
+    - Use ngrok if your Jenkins is running locally and needs a public URL.   
     - Make sure to set up authentication in Jenkins if exposing it publicly.   
     - This setup allows your local machine to act as a remote executor for CI/CD workflows.  
    

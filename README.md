@@ -79,7 +79,6 @@ git clone https://github.com/Kibz6/AutomationCICD.git
     - Install required plugins:
        - Git Plugin
        - Maven Integration Plugin
-       - Pipeline Plugin
 
 4. Expose Jenkins Using Ngrok
 

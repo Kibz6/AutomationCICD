@@ -83,7 +83,7 @@ git clone https://github.com/Kibz6/AutomationCICD.git
 
 4. Expose Jenkins Using Ngrok
 
-    To allow external services (like Selenium Grid) to access your Jenkins instance:
+    To allow external services (like GitHub) to access your Jenkins instance:
 
     Setup and run Ngrok with - ngrok http 8080
 

@@ -50,86 +50,54 @@ AutomationCICD
 ├── src
 │   ├── test
 │   │   ├── java
-│   │   │   ├── tests
-│   │   │   ├── pages
-│   │   │   ├── utilities
-│   │   │   └── listeners
+│   │   │   ├── tests         #Test Classes
+│   │   │   ├── pages         #Page Object Classes
+│   │   │   ├── utilities     #Utility/Helper Classes
+│   │   │   └── listeners     #TestNG Listeners (logging, reports)
 │
-├── testng.xml
-├── pom.xml
-└── README.md
+├── testng.xml                #TestNG suite file
+├── pom.xml                   #Maven Dependencies
 ```
 
-How to Run the Project:
+How to Run Locally :
 
 1. Clone the Repository
 git clone https://github.com/Kibz6/AutomationCICD.git
 
-2. Push Project to Your Own GitHub
+2. Install prerequisites
+ - Java 17+
+ - Maven 3.6+
+ - Browser drivers (ChromeDriver, GeckoDriver, etc.)
 
-    Create a new repository on your GitHub and push the project:
+3. Start Selenium Grid
+Download Selenium Server Standalone / Grid
+   - Go to https://www.selenium.dev/documentation/grid/getting_started/ and follow the instructions on how to setup Selenium Grid
+   - Open a terminal and run the Hub:
+      
+      java -jar selenium-server-<version>.jar hub
 
-     - git remote set-url origin <your-repo-url>
-     - git push -u origin main
+   - Start one or more nodes and register them to the Hub:
 
-3. Set Up Jenkins Locally
+     java -jar selenium-server-<version>.jar standalone
 
-    - Install Jenkins and run it on:
-      http://localhost:8080
-    - Install required plugins:
-       - Git Plugin
-       - Maven Integration Plugin
+Make sure Make sure the Hub is running on http://localhost:4444 before running the tests.
 
-4. Expose Jenkins Using Ngrok
+4. Run tests
 
-    To allow external services (like GitHub and Selenium Grid) to access your Jenkins instance:
-
-    Setup and run Ngrok with - ngrok http 8080
-
-    This will generate a public URL like - https://xxxx.ngrok.io
-
-    Use this URL in your pipeline/webhooks if needed.
-
-5. Configure Jenkins Job
-    Create a new Pipeline Job
-    Connect it to your GitHub repository
-    Configure:
-      - GitHub webhook (optional for auto-trigger)
-      - Branch: main
-
-6. Selenium Grid Setup
-
-     Ensure your Selenium Grid is running and accessible.
+   Once Selenium Grid is running open CommandPromt/Terminal and run:
    
-     Update your test configuration to point to the Grid URL:
-
-    - http://<grid-url>:4444/wd/hub
-
-    This allows tests to run remotely instead of locally.
-
-7. Run the Tests
-
-    You can now run tests in multiple ways:
-
-    Locally:
-   - mvn test
+   mvn clean test
    
-    Via Jenkins:
-   - Trigger build manually or via GitHub webhook
-  
-     
-9. View Test Reports
+Or run a specific TestNG suite:
 
-    After execution:
+  mvn test -DsuiteXmlFile=testng.xml
 
-    - Open Extent Reports generated in the project
-    - Review logs and screenshots for failed tests
 
-    Notes:
+5. Notes:
    
- - Jenkins must be publicly accessible (via ngrok) for full CI/CD workflow
- - Selenium Grid must be running before triggering tests
- - Ensure correct configuration of WebDriver hub URL
+ - Tests will connect to Selenium Grid and run on registered nodes.
+ - Test reports are generated in AutomationCICD/reports/
+ - No Jenkins or GitHub Actions is needed for local execution.
 
  Author:
 

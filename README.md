@@ -131,3 +131,9 @@ git clone https://github.com/Kibz6/AutomationCICD.git
  - Jenkins must be publicly accessible (via ngrok) for full CI/CD workflow
  - Selenium Grid must be running before triggering tests
  - Ensure correct configuration of WebDriver hub URL
+
+ Author:
+
+Bojan Djeviki
+
+GitHub: https://github.com/Kibz6

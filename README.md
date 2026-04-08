@@ -1,9 +1,9 @@
-AutomationCICD – End-to-End Test Automation Framework :
+**AutomationCICD – End-to-End Test Automation Framework** :
 
 An end-to-end test automation framework built using Selenium, Java, and TestNG, integrated with CI/CD pipelines (Jenkins & GitHub Actions) to enable continuous testing and faster feedback.
 This project demonstrates how modern QA engineers design scalable, maintainable automation frameworks and integrate them into real-world DevOps workflows.
 
-Tech Stack :
+**Tech Stack** :
 - Java
 - Selenium WebDriver
 - TestNG
@@ -13,7 +13,7 @@ Tech Stack :
 - Extent Reports
 - ThreadLocal WebDriver (Parallel Execution)
 
-Framework Design :
+**Framework Design** :
 
 This framework follows best practices used in real-world automation projects:
 
@@ -24,26 +24,23 @@ This framework follows best practices used in real-world automation projects:
 - Listeners for reporting and logging
 - Clean separation of concerns (Pages, Tests, Utilities)
 
-CI/CD Integration :
+**CI/CD Integration** :
 
-The framework is fully integrated with CI/CD pipelines:
+GitHub → Jenkins → Maven Build → Test Execution → Reports
 
-- GitHub Actions
-   - Automatically triggers test execution on every push
-   - Provides quick feedback on build status
-- Jenkins
-   - Supports scheduled and manual test runs
-   - Enables continuous testing in a real CI environment
-- Automated Reporting
-   - Test reports generated after each execution
-   - Easy debugging with logs and screenshots
+Flow:
+1. Code is pushed to GitHub
+2. Jenkins detects changes (via webhook)
+3. Jenkins triggers a build
+4. Maven runs the test suite
+5. Test reports are generated
  
-Reporting :
+**Reporting** :
 - Extent Reports integration
 - Screenshots captured on test failure
 - Detailed logs for debugging and analysis
 
-Project Structure :
+**Project Structure** :
 ```
 AutomationCICD
 │
@@ -59,7 +56,7 @@ AutomationCICD
 ├── pom.xml                   #Maven Dependencies
 ```
 
-How to Run Locally :
+**How to Run Locally** :
 
 1. Clone the Repository
 git clone https://github.com/Kibz6/AutomationCICD.git
@@ -99,10 +96,7 @@ Download Selenium Server Standalone / Grid
  - Test reports are generated in AutomationCICD/reports/
  - No Jenkins or GitHub Actions is needed for local execution.
 
-How to run publicly:
-
-
-
+**How to run publicly**:
 
 1. Start your local Jenkins
    

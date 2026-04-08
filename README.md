@@ -122,7 +122,7 @@ How to run publicly:
       
        3. Copy the token — this is your GitHub access token.
           
-     3. Configure Git in Jenkins Job
+     2. Configure Git in Jenkins Job
         - Create or edit a Jenkins job → Source Code Management → Git
         - Repository URL:
           
@@ -131,7 +131,19 @@ How to run publicly:
         - Credentials:
               Click add → Global → Secret Text → Secret (this is where your GitHub access token should go)
       
-   
+      3. Optional Trigger Builds via Webhook
+           - In your GitHub repo → Settings → Webhooks → Add webhook
+               - Payload URL:
+                 
+                     https://your-public-jenkins-url/job/<job-name>/build?token=<jenkins-job-token>
+                      
+           - Content type: application/json
+           - Events: push (or others as needed)
+             
+         This way GitHub can trigger your local Jenkins job automatically.
+         
+  
+         
 4. Expose Jenkins to the Internet
    
     Go to https://ngrok.com/ download and follow instructions on how to setup Ngrok.

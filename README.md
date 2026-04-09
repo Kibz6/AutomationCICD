@@ -3,6 +3,15 @@
 An end-to-end test automation framework built using Selenium, Java, and TestNG, integrated with CI/CD pipelines (Jenkins & GitHub Actions) to enable continuous testing and faster feedback.
 This project demonstrates how modern QA engineers design scalable, maintainable automation frameworks and integrate them into real-world DevOps workflows.
 
+**Why This Project?**
+
+This project simulates a real-world QA automation pipeline where tests are:
+- Automatically triggered on code changes
+- Executed in a distributed environment (Selenium Grid)
+- Integrated into CI/CD workflows
+
+It reflects how modern teams ensure fast and reliable software delivery.
+
 **Tech Stack** :
 - Java
 - Selenium WebDriver

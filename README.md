@@ -56,131 +56,48 @@ AutomationCICD
 ├── pom.xml                   #Maven Dependencies
 ```
 
-**How to Run Locally** :
+**Quick Start (Selenium Grid – Required)**
 
-1. Clone the Repository
-git clone https://github.com/Kibz6/AutomationCICD.git
+This framework is designed to run on Selenium Grid for scalable and parallel execution.
 
-2. Install prerequisites
- - Java 17+
- - Maven 3.6+
- - Browser drivers (ChromeDriver, GeckoDriver, etc.)
+1. Start Selenium Grid (Standalone Mode)
+   
+       java -jar selenium-server-<version>.jar standalone
 
-3. Start Selenium Grid
-Download Selenium Server Standalone / Grid
-   - Go to https://www.selenium.dev/documentation/grid/getting_started/ and follow the instructions on how to setup Selenium Grid
-   - Open a terminal and run the Hub:
-     
-         java -jar selenium-server-<version>.jar hub
+   This starts a local Grid (Hub + Node) at:
 
-   - Start one or more nodes and register them to the Hub:
+       http://localhost:4444
 
-         java -jar selenium-server-<version>.jar standalone
-
-   Make sure Make sure the Hub is running on http://localhost:4444 before running the tests.
-
-4. Run tests
-
-   Once Selenium Grid is running open CommandPromt/Terminal and run:
+2. Run Tests
    
        mvn clean test
-   
-   Or run a specific TestNG suite:
-  
-       mvn test -DsuiteXmlFile=testng.xml
 
+Tests will execute on the Selenium Grid node.
 
-5. Notes:
-   
- - Tests will connect to Selenium Grid and run on registered nodes.
- - Test reports are generated in AutomationCICD/reports/
- - No Jenkins or GitHub Actions is needed for local execution.
+**CI/CD Setup (Advanced)**
 
-**How to run publicly**:
+This project supports running tests through Jenkins using a public URL.
 
-1. Start your local Jenkins
-   
-    Make sure your Jenkins is running locally on http://localhost:8080
+Steps:
+1. Setup Jenkins locally (http://localhost:8080)
+2. Connect GitHub repository using a Personal Access Token
 
-    Confirm you can log in and trigger jobs manually.
+3. Expose Jenkins using ngrok:
 
-2. Connect GitHub to Jenkins Using a GitHub Access Token
-
-    1. Generate a GitHub Personal Access Token (PAT)
-       
-       1. Go to GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic).
-       2. Click Generate new token → select permissions:
-           - repo (full access to private/public repos)
-           - workflow (if triggering Actions)
-           - Optionally: read:org if organization repos are used
-      
-       3. Copy the token — this is your GitHub access token.
-          
-     2. Configure Git in Jenkins Job
-        - Create or edit a Jenkins job → Source Code Management → Git
-        - Repository URL:
-          
-               https://github.com/username/AutomationCICD.git
-          
-        - Credentials:
-              Click add → Global → Secret Text → Secret (this is where your GitHub access token should go)
-      
-      3. Optional Trigger Builds via Webhook
-           - In your GitHub repo → Settings → Webhooks → Add webhook
-               - Payload URL:
-                 
-                     https://your-public-jenkins-url/job/<job-name>/build?token=<jenkins-job-token>
-                      
-           - Content type: application/json
-           - Events: push (or others as needed)
-             
-         This way GitHub can trigger your local Jenkins job automatically.
-         
-  
-         
-4. Expose Jenkins to the Internet
-   
-    Go to https://ngrok.com/ download and follow instructions on how to setup Ngrok.
-   
-    Use Ngrok to create a public URL for your local Jenkins:
-   
        ngrok http 8080
-       
-    Ngrok will give a public URL, e.g.:
-   
-       https://abc123.ngrok.io
-      
-    This URL is now accessible to GitHub Actions, remote machines, or other teammates.
 
-    Important: Only use ngrok for testing or temporary setups. Do not expose Jenkins permanently without security measures.
+4. Configure GitHub webhook → Jenkins
 
-5. Connect GitHub Actions (or Webhooks) to your Jenkins
-   
-    In GitHub, you can trigger jobs on your public Jenkins using the ngrok URL.
-   
-    Example: configure a webhook to call:
-   
-       https://abc123.ngrok.io/job/<your-job-name>/build?token=<your-token>
-    
-    Jenkins will now execute tests triggered by GitHub Actions, but using your local machine as the executor.
+This enables automated test execution triggered from GitHub.
 
-6. Run the tests
-   
-    Once Jenkins receives the build request, it will execute your pipeline, which typically includes:
+**GitHub Actions (Optional)**
 
-       mvn clean test
-    
-    Tests will connect to your Selenium Grid (local or remote), and reports will be generated in:
-   
-       AutomationCICD/reports/
+This project can also run using GitHub Actions:
 
-7. Notes
-
-    - Use ngrok if your Jenkins is running locally and needs a public URL.   
-    - Make sure to set up authentication in Jenkins if exposing it publicly.   
-    - This setup allows your local machine to act as a remote executor for CI/CD workflows.  
-   
-
+- Trigger on push
+- Execute Maven tests
+- Generate reports
+  
  Author:
 
 Bojan Djeviki

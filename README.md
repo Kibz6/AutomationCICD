@@ -55,14 +55,6 @@ AutomationCICD
 ├── testng.xml                #TestNG suite file
 ├── pom.xml                   #Maven Dependencies
 ```
-**Why This Project?**
-
-This project simulates a real-world QA automation pipeline where tests are:
-- Automatically triggered on code changes
-- Executed in a distributed environment (Selenium Grid)
-- Integrated into CI/CD workflows
-
-It reflects how modern teams ensure fast and reliable software delivery.
 
 **Quick Start (Selenium Grid – Required)**
 
@@ -105,6 +97,16 @@ This project can also run using GitHub Actions:
 - Trigger on push
 - Execute Maven tests
 - Generate reports
+
+**Why This Project?**
+
+This project simulates a real-world QA automation pipeline where tests are:
+- Automatically triggered on code changes
+- Executed in a distributed environment (Selenium Grid)
+- Integrated into CI/CD workflows
+
+It reflects how modern teams ensure fast and reliable software delivery.
+
   
  Author:
 

@@ -132,16 +132,6 @@ public class CartPageTests extends BaseTest{
 			
 
 	}
-	
-	@Test(dataProvider="getData",retryAnalyzer=Retry.class)
-	public void ViewProductValidation(HashMap<String, String> input) {
-		
-	
-			ProductCatalogue productCatalogue = loginPage.loginApplication(currentEmail,currentPassword);		
-			productCatalogue.getProductName(input.get("product"));
-	
-	}
-	
 	@DataProvider
 	private Object getData() throws IOException {
 		

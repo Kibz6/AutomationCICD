@@ -138,6 +138,7 @@ public class CartPageTests extends BaseTest{
 		List<HashMap<String, String>> data = getJsonDataToMap("C:\\Users\\KIBZ\\eclipse-workspace\\ECommerceProject\\src\\test\\java\\testData\\TestData.json");
 		
 		return new Object[][] {{data.get(0)}};
+		
 	}
 
 }
